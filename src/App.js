@@ -13,7 +13,7 @@ class App extends Component {
     page: 1,
     status: 'idle',
     showButton: false,
-    modalIsOpen: null,
+    modalContent: null,
   };
 
   handleFormSubmit = name => {
@@ -21,11 +21,11 @@ class App extends Component {
   };
 
   handleSelectImage = largeImageUrl => {
-    this.setState({ modalIsOpen: largeImageUrl });
+    this.setState({ modalContent: largeImageUrl });
   };
 
   handleCloseModal = () => {
-    this.setState({ modalIsOpen: null });
+    this.setState({ modalContent: null });
   };
 
   componentDidUpdate() {
@@ -63,9 +63,9 @@ class App extends Component {
         />
         {this.state.status === 'load' && <Loader />}
         {this.state.showButton && <Button onClickLoadMore={this.onButton} />}
-        {this.state.modalIsOpen && (
+        {this.state.modalContent && (
           <Modal
-            largeImageURL={this.state.modalIsOpen}
+            largeImageURL={this.state.modalContent}
             onClose={this.handleCloseModal}
           />
         )}
